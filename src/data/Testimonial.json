@@ -1,0 +1,183 @@
+[
+    {
+      "id": "1",
+      "category": "skincare",
+      "title": "Variety of Styles!",
+      "name": "Aarav K.",
+      "avatar": "/images/avatar/1.png",
+      "date": "November 10, 2024",
+      "address": "Mumbai, India",
+      "description": "Maluk Forever's Sneel Face Sheet Mask is incredible! The variety is amazing, and each mask leaves my skin feeling fresh and rejuvenated. Shopping with them is always a pleasure!",
+      "images": [
+        "/images/product/sneel-face-mask.png",
+        "/images/product/sneel-face-mask.png"
+      ],
+      "star": 5
+    },
+    {
+      "id": "2",
+      "category": "skincare",
+      "title": "Quality of Face Masks!",
+      "name": "Priya S.",
+      "avatar": "/images/avatar/2.png",
+      "date": "November 11, 2024",
+      "address": "Delhi, India",
+      "description": "I love Maluk Forever’s Hyaluronic face masks! They use high-quality ingredients that leave my skin soft, smooth, and glowing. I can't recommend them enough for anyone serious about skincare!",
+      "images": [
+        "/images/product/hyaluronic-mask.png",
+        "/images/product/hyaluronic-mask.png"
+      ],
+      "star": 5
+    },
+    {
+      "id": "3",
+      "category": "skincare",
+      "title": "Customer Service Excellence!",
+      "name": "Radhika M.",
+      "avatar": "/images/avatar/3.png",
+      "date": "November 13, 2024",
+      "address": "Bengaluru, India",
+      "description": "Maluk Forever always delivers top-quality products, and their customer service is excellent. The team is friendly and helpful, and they always make sure I get exactly what I need. Their Collagen face masks are my favorite!",
+      "images": [
+        "/images/product/collagen-mask.png",
+        "/images/product/collagen-mask.png"
+      ],
+      "star": 4
+    },
+    {
+      "id": "4",
+      "category": "skincare",
+      "title": "Quality of Face Masks!",
+      "name": "Arjun P.",
+      "avatar": "/images/avatar/4.png",
+      "date": "November 15, 2024",
+      "address": "Chennai, India",
+      "description": "Maluk Forever's Collagen face masks are fantastic! They help hydrate and brighten my skin, making it feel soft and refreshed every time. The quality is always top-notch!",
+      "images": [
+        "/images/product/collagen-mask.png",
+        "/images/product/collagen-mask.png"
+      ],
+      "star": 5
+    },
+    {
+      "id": "5",
+      "category": "skincare",
+      "title": "Fantastic Customer Service!",
+      "name": "Simran G.",
+      "avatar": "/images/avatar/5.png",
+      "date": "November 18, 2024",
+      "address": "Kolkata, India",
+      "description": "I’ve been using Maluk Forever’s Hyaluronic face masks for a few months now, and I’m so impressed with how they keep my skin glowing. The customer service is exceptional as well!",
+      "images": [
+        "/images/product/hyaluronic-mask.png",
+        "/images/product/hyaluronic-mask.png"
+      ],
+      "star": 4
+    },
+    {
+      "id": "6",
+      "category": "skincare",
+      "title": "Variety of Masks!",
+      "name": "Nisha C.",
+      "avatar": "/images/avatar/6.png",
+      "date": "November 19, 2024",
+      "address": "Pune, India",
+      "description": "Maluk Forever offers a great variety of face masks. I can always find the perfect one for my skin type, whether I need hydration with Hyaluronic, anti-aging with Collagen, or rejuvenation with Sneel. Highly recommend!",
+      "images": [
+        "/images/product/sneel-face-mask.png",
+        "/images/product/hyaluronic-mask.png"
+      ],
+      "star": 5
+    },
+    {
+      "id": "7",
+      "category": "skincare",
+      "title": "Quality of Face Masks!",
+      "name": "Arjun P.",
+      "avatar": "/images/avatar/4.png",
+      "date": "November 15, 2025",
+      "address": "Chennai, India",
+      "description": "Maluk Forever’s face masks, especially the Collagen ones, have changed my skincare routine! They’re incredibly hydrating and always leave my skin looking and feeling great.",
+      "images": [
+        "/images/product/collagen-mask.png",
+        "/images/product/collagen-mask.png"
+      ],
+      "star": 5
+    },
+    {
+      "id": "8",
+      "category": "skincare",
+      "title": "Customer Service Excellence!",
+      "name": "Simran G.",
+      "avatar": "/images/avatar/5.png",
+      "date": "November 18, 2025",
+      "address": "Kolkata, India",
+      "description": "Maluk Forever’s attention to detail and customer service are excellent. The staff is so helpful and kind, and their face masks are the best I’ve ever used. The Hyaluronic masks are my go-to!",
+      "images": [
+        "/images/product/hyaluronic-mask.png",
+        "/images/product/hyaluronic-mask.png"
+      ],
+      "star": 5
+    },
+    {
+      "id": "9",
+      "category": "skincare",
+      "title": "Variety of Masks!",
+      "name": "Nisha C.",
+      "avatar": "/images/avatar/6.png",
+      "date": "November 19, 2025",
+      "address": "Pune, India",
+      "description": "Maluk Forever has a wonderful selection of face masks that cater to different skin needs. My skin feels soft, fresh, and rejuvenated after every use, especially with their Collagen mask!",
+      "images": [
+        "/images/product/collagen-mask.png",
+        "/images/product/sneel-face-mask.png"
+      ],
+      "star": 4
+    },
+    {
+      "id": "10",
+      "category": "skincare",
+      "title": "Variety of Styles!",
+      "name": "Aarav K.",
+      "avatar": "/images/avatar/1.png",
+      "date": "November 10, 2025",
+      "address": "Mumbai, India",
+      "description": "I love the variety of face masks at Maluk Forever! Their Sneel Face Mask is my favorite. It’s perfect for any skin type, and each mask delivers great results. Definitely worth trying!",
+      "images": [
+        "/images/product/sneel-face-mask.png",
+        "/images/product/sneel-face-mask.png"
+      ],
+      "star": 4
+    },
+    {
+      "id": "11",
+      "category": "skincare",
+      "title": "Quality of Face Masks!",
+      "name": "Priya S.",
+      "avatar": "/images/avatar/2.png",
+      "date": "November 11, 2025",
+      "address": "Delhi, India",
+      "description": "Maluk Forever’s face masks, especially their Hyaluronic ones, are my skincare staple. They make my skin feel deeply nourished, soft, and glowing every time!",
+      "images": [
+        "/images/product/hyaluronic-mask.png",
+        "/images/product/hyaluronic-mask.png"
+      ],
+      "star": 5
+    },
+    {
+      "id": "12",
+      "category": "skincare",
+      "title": "Customer Service Excellence!",
+      "name": "Radhika M.",
+      "avatar": "/images/avatar/3.png",
+      "date": "November 13, 2025",
+      "address": "Bengaluru, India",
+      "description": "The customer service at Maluk Forever is second to none. They’re always attentive and helpful, and their face masks, like the Collagen ones, are always amazing!",
+      "images": [
+        "/images/product/collagen-mask.png",
+        "/images/product/collagen-mask.png"
+      ],
+      "star": 5
+    }
+  ]
+  
