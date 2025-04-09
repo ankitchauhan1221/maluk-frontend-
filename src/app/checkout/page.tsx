@@ -133,7 +133,7 @@ const Checkout: React.FC = () => {
     phone: "",
   });
 
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://server.malukforever.com";
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://server.malukforever.com/";
   const PUBLIC_URL = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
   const ORIGIN_PINCODE = "201301";
 

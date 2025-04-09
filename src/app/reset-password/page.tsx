@@ -65,7 +65,7 @@ const ResetPassword = () => {
         confirmPassword: formData.confirmPassword,
       };
       console.log('Reset Password - Sending payload:', payload); // Log payload for debugging
-      const response = await fetch('https://server.malukforever.com/api/auth/reset-password', {
+      const response = await fetch('https://server.malukforever.com//api/auth/reset-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

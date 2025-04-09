@@ -19,7 +19,7 @@ const OrderConfirmation: React.FC = () => {
   const searchParams = useSearchParams();
   const { tokens, isLoading: authLoading } = useAuth();
 
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://server.malukforever.com';
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://server.malukforever.com/';
 
   const fetchOrderDetails = async (orderId: string, transactionId?: string | null): Promise<void> => {
     console.log('OrderConfirmation - Tokens:', tokens);
@@ -114,6 +114,9 @@ const OrderConfirmation: React.FC = () => {
   }
 
   const rawSubtotal = order.products.reduce((sum: number, p: Product) => sum + p.price * p.quantity, 0);
+  const shippingCost = order.shippingCost || 0;
+  const discountAmount = order.discountAmount || 0;
+  const calculatedTotal = rawSubtotal + shippingCost - discountAmount;
   const status = searchParams.get('status');
   const transactionId = searchParams.get('transactionId');
 
@@ -210,16 +213,16 @@ const OrderConfirmation: React.FC = () => {
                   {order.couponCode && (
                     <div className="flex items-center justify-between mt-2 text-lg font-semibold text-green-600">
                       <span>Discount ({order.couponCode})</span>
-                      <span>-₹{(order.discountAmount || 0).toFixed(2)}</span>
+                      <span>-₹{discountAmount.toFixed(2)}</span>
                     </div>
                   )}
                   <div className="flex items-center justify-between mt-2 text-lg font-semibold text-gray-800">
                     <span>Shipping (DTDC)</span>
-                    <span>₹{(order.shippingCost || 0).toFixed(2)}</span>
+                    <span>₹{shippingCost.toFixed(2)}</span>
                   </div>
                   <div className="flex items-center justify-between mt-5 pt-5 border-t border-gray-200">
                     <h5 className="text-2xl font-bold">Total</h5>
-                    <h5 className="text-2xl font-bold">₹{order.totalAmount.toFixed(2)}</h5>
+                    <h5 className="text-2xl font-bold">₹{calculatedTotal.toFixed(2)}</h5>
                   </div>
                 </div>
               </div>

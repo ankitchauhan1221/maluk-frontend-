@@ -50,7 +50,7 @@ const Register = () => {
         confirmPassword: formData.confirmPassword,
       };
       console.log('Sending payload:', payload); // Debug log to verify data
-      const response = await fetch('https://server.malukforever.com/api/auth/register/user', {
+      const response = await fetch('https://server.malukforever.com//api/auth/register/user', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

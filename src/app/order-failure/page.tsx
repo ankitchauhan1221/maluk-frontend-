@@ -17,7 +17,7 @@ const PaymentFailure: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://server.malukforever.com';
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://server.malukforever.com/';
 
   const fetchOrderDetails = async (orderId: string): Promise<void> => {
     const token = localStorage.getItem('tokens') ? JSON.parse(localStorage.getItem('tokens')!).accessToken : null;

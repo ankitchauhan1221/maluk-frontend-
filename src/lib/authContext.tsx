@@ -16,7 +16,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [tokens, setTokens] = useState<{ accessToken: string } | null>(null);
   const [isLoading, setIsLoading] = useState(true); // Start as true to indicate initial load
 
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://server.malukforever.com';
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://server.malukforever.com/';
 
   const login = (accessToken: string) => {
     const newTokens = { accessToken };

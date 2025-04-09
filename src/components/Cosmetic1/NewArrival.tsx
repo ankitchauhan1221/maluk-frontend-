@@ -37,7 +37,7 @@ const NewArrival: React.FC = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://server.malukforever.com/api/products');
+        const response = await fetch('https://server.malukforever.com//api/products');
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }
