@@ -17,6 +17,21 @@ interface Product {
   _id?: string;
 }
 
+
+interface PhonePeCheckout {
+  transact: (options: {
+    tokenUrl: string;
+    callback: (response: string) => void;
+    type: "IFRAME";
+  }) => void;
+}
+
+declare global {
+  interface Window {
+    PhonePeCheckout?: PhonePeCheckout;
+  }
+}
+
 interface Address {
   name: string;
   lastname: string;
@@ -106,6 +121,7 @@ const Checkout: React.FC = () => {
   const [isShippingAddressOpen, setIsShippingAddressOpen] = useState<boolean>(false);
   const [isBillingAddressOpen, setIsBillingAddressOpen] = useState<boolean>(false);
   const [paymentStatusMessage, setPaymentStatusMessage] = useState<string | null>(null);
+  const [isPhonePeLoaded, setIsPhonePeLoaded] = useState<boolean>(false);
 
   const [shippingFormData, setShippingFormData] = useState<FormData>({
     email: "",
@@ -133,7 +149,7 @@ const Checkout: React.FC = () => {
     phone: "",
   });
 
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://server.malukforever.com/";
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
   const PUBLIC_URL = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
   const ORIGIN_PINCODE = "201301";
 
@@ -220,6 +236,16 @@ const Checkout: React.FC = () => {
   };
 
   useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://mercury.phonepe.com/web/bundle/checkout.js";
+    script.async = true;
+    script.onload = () => {
+      console.log("PhonePe Checkout script loaded");
+      setIsPhonePeLoaded(true);
+    };
+    script.onerror = () => console.error("Failed to load PhonePe Checkout script");
+    document.body.appendChild(script);
+
     setIsLoading(true);
     setIsLoggedIn(!!tokens?.accessToken);
 
@@ -329,9 +355,12 @@ const Checkout: React.FC = () => {
       setTotalCart(total);
       setTotalSavings(savings);
     }
+
+    return () => {
+      document.body.removeChild(script);
+    };
   }, [tokens, searchParams, cartState.cartArray, logout]);
 
-  // Handle pending payment status polling
   useEffect(() => {
     const orderId = searchParams.get("orderId");
     const status = searchParams.get("status");
@@ -350,9 +379,9 @@ const Checkout: React.FC = () => {
           console.log("Checkout - Payment status check response:", data);
 
           if (data.success) {
-            router.push(`/pages/order-confirmation?orderId=${data.orderId}&transactionId=${data.transactionId}&status=success`);
+            router.push(`/order-confirmation?orderId=${data.orderId}&transactionId=${data.transactionId}&status=success`);
           } else if (data.status === "failed") {
-            router.push(`/pages/payment-failure?orderId=${orderId}&error=PaymentFailed&region=${encodeURIComponent(data.region || "")}`);
+            router.push(`/payment-failure?orderId=${orderId}&error=PaymentFailed®ion=${encodeURIComponent(data.region || "")}`);
           }
         } catch (error) {
           console.error("Checkout - Error checking payment status:", error);
@@ -360,8 +389,8 @@ const Checkout: React.FC = () => {
         }
       };
 
-      const interval = setInterval(checkStatus, 5000); // Poll every 5 seconds
-      return () => clearInterval(interval); // Cleanup on unmount or status change
+      const interval = setInterval(checkStatus, 5000);
+      return () => clearInterval(interval);
     }
   }, [searchParams, router, tokens]);
 
@@ -590,10 +619,14 @@ const Checkout: React.FC = () => {
       return;
     }
 
-    const finalAmount = totalCart + shippingCost - discountAmount;
-
-    try {
-      const consignments = [
+    const orderData = {
+      products: items,
+      shippingAddress,
+      billingAddress,
+      paymentMethod,
+      orgPincode: ORIGIN_PINCODE,
+      desPincode: shippingAddress.zip,
+      consignments: [
         {
           pieceCount: items.length,
           pickupPincode: ORIGIN_PINCODE,
@@ -602,31 +635,21 @@ const Checkout: React.FC = () => {
           customerName: `${shippingAddress.name} ${shippingAddress.lastname}`,
           customerEmail: shippingAddress.email,
         },
-      ];
+      ],
+      totalAmount: totalCart,
+      shippingCost,
+      couponCode: discountAmount > 0 ? couponCode : undefined,
+      discountAmount,
+      saveAddress,
+    };
 
-      const orderData = {
-        products: items,
-        shippingAddress,
-        billingAddress,
-        paymentMethod,
-        orgPincode: ORIGIN_PINCODE,
-        desPincode: shippingAddress.zip,
-        consignments,
-        totalAmount: totalCart,
-        shippingCost,
-        couponCode: discountAmount > 0 ? couponCode : undefined,
-        discountAmount,
-        saveAddress,
-      };
+    const endpoint =
+      paymentMethod === "PhonePe"
+        ? `${API_BASE_URL}/api/phonepe/initiate-phonepe`
+        : `${API_BASE_URL}/api/orders/create-order`;
 
+    try {
       console.log("Frontend - Submitting order data:", JSON.stringify(orderData, null, 2));
-      console.log("Frontend - Tokens before submission:", tokens);
-
-      const endpoint =
-        paymentMethod === "PhonePe"
-          ? `${API_BASE_URL}/api/phonepe/initiate-payment`
-          : `${API_BASE_URL}/api/orders/create-order`;
-
       const orderResponse = await fetch(endpoint, {
         method: "POST",
         headers: {
@@ -645,16 +668,34 @@ const Checkout: React.FC = () => {
       console.log("Frontend - Order response:", orderResult);
 
       if (paymentMethod === "COD") {
-        console.log("Frontend - COD order placed, redirecting to confirmation");
-        router.push(`/order-confirmation?orderId=${orderResult.orderId}`);
+        router.push(`/pages/order-confirmation?orderId=${orderResult.orderId}`);
         setIsPaymentInitiated(false);
         return;
       }
 
       if (paymentMethod === "PhonePe" && orderResult.paymentUrl) {
-        console.log("Frontend - Initiating PhonePe payment with orderId:", orderResult.orderId);
-        window.location.assign(orderResult.paymentUrl);
-      } else {
+  if (isPhonePeLoaded && window.PhonePeCheckout && window.PhonePeCheckout.transact) { // Fixed typo here
+    window.PhonePeCheckout.transact({
+      tokenUrl: orderResult.paymentUrl,
+      callback: (response) => {
+        setIsPaymentInitiated(false);
+        if (response === "USER_CANCEL") {
+          setPaymentError("Payment was canceled by the user.");
+          console.log("Payment canceled by user");
+        } else if (response === "CONCLUDED") {
+          setPaymentStatusMessage("Payment processing. Please wait...");
+          console.log("Payment concluded, awaiting backend verification");
+        }
+      },
+      type: "IFRAME",
+    });
+  } else {
+    setPaymentError("PhonePe payment module is not ready. Please wait or refresh the page.");
+    setIsPaymentInitiated(false);
+  }
+}
+      
+      else {
         throw new Error("Payment URL not provided for PhonePe");
       }
     } catch (error: any) {

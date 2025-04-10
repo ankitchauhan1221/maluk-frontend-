@@ -26,7 +26,7 @@ const SliderCosmeticOne = () => {
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const response = await fetch('https://server.malukforever.com//api/banners', {
+        const response = await fetch('http://localhost:5000/api/banners', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

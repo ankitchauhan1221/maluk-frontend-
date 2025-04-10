@@ -43,7 +43,7 @@ const MenuOne: React.FC<Props> = ({ props }) => {
   // Determine login status based on accessToken from useAuth
   const isLoggedIn = !!tokens?.accessToken;
 
-  const API_BASE_URL: string = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://server.malukforever.com/';
+  const API_BASE_URL: string = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
   useEffect(() => {
     const fetchCategories = async () => {

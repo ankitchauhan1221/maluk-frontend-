@@ -23,7 +23,7 @@ const Cart = () => {
   const [couponCode, setCouponCode] = useState<string>(''); // Coupon code input
   const [couponError, setCouponError] = useState<string | null>(null); // Coupon error message
 
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://server.malukforever.com/';
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
   const moneyForFreeship = 150;
 
   useEffect(() => {

@@ -41,7 +41,7 @@ const Default: React.FC<Props> = ({ productId }) => {
   const { tokens, logout, isLoading: authLoading } = useAuth(); // Use AuthContext
   const router = useRouter();
 
-  const API_BASE_URL = 'https://server.malukforever.com/';
+  const API_BASE_URL = 'http://localhost:5000';
   const isAuthenticated = !!tokens?.accessToken; // Derive authentication status
 
   const checkAuthStatus = async (): Promise<boolean> => {

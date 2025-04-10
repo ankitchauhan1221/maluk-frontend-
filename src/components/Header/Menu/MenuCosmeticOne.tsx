@@ -48,7 +48,7 @@ const MenuCosmeticOne: React.FC<Props> = ({ props }) => {
     const fetchCategories = async () => {
       try {
         setLoading(true);
-        const response = await fetch('https://server.malukforever.com//api/categories', {
+        const response = await fetch('http://localhost:5000/api/categories', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

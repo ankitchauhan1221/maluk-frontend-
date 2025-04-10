@@ -9,6 +9,7 @@ export interface ProductType {
   category: {
     _id: string;
     name: string;
+    
     status?: string;
     productCount?: number;
     subcategoryCount?: number;
