@@ -19,7 +19,7 @@ const OrderConfirmation: React.FC = () => {
   const searchParams = useSearchParams();
   const { tokens, isLoading: authLoading } = useAuth();
 
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://server.malukforever.com/';
 
   const fetchOrderDetails = async (orderId: string, transactionId?: string | null): Promise<void> => {
     console.log('OrderConfirmation - Tokens:', tokens);

@@ -26,7 +26,7 @@ const ShopBreadCrumbImg: React.FC<Props> = ({ productPerPage, data }) => {
   const categoryId = searchParams.get('categoryId');
   const subcategoryId = searchParams.get('subcategoryId');
 
-  const API_BASE_URL: string = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
+  const API_BASE_URL: string = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://server.malukforever.com/';
   const productsPerPage: number = productPerPage;
   const offset: number = currentPage * productsPerPage;
 

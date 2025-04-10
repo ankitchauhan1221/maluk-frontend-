@@ -40,7 +40,7 @@ const SearchResult = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:5000/api/products?query=${query}`);
+        const response = await fetch(`https://server.malukforever.com//api/products?query=${query}`);
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }

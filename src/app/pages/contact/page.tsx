@@ -33,7 +33,7 @@ const ContactUs: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch('https://server.malukforever.com//api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
